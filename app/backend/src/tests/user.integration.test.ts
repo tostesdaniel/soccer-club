@@ -11,24 +11,46 @@ chai.use(chaiHttp);
 const { expect } = chai;
 
 describe('Rota de login', () => {
-  before(async () => {
-    sinon.stub(User, 'findOne').resolves({
-      id: 1,
-      username: 'Admin',
-      role: 'admin',
-      email: 'admin@admin.com',
-      password: 'secret_admin',
-    } as User);
+  describe('Em caso de sucesso', () => {
+    before(async () => {
+      sinon.stub(User, 'findOne').resolves({
+        id: 1,
+        username: 'Admin',
+        role: 'admin',
+        email: 'admin@admin.com',
+        password: 'secret_admin',
+      } as User);
+    });
+
+    after(async () => sinon.restore());
+
+    it('Verifica se é retornado token ao fazer login com sucesso', async () => {
+      const response = await chai
+        .request(app)
+        .post('/login')
+        .send(mocks.userMocks.admin);
+
+      expect(response).to.have.status(200);
+    });
   });
 
-  after(async () => sinon.restore());
+  describe('Em caso de erro', () => {
+    before(async () => {
+      sinon.stub(User, 'findOne').resolves(null);
+    });
 
-  it('Verifica se é retornado token ao fazer login com sucesso', async () => {
-    const response = await chai
-      .request(app)
-      .post('/login')
-      .send(mocks.userMocks.admin);
+    after(async () => sinon.restore());
 
-    expect(response).to.have.status(200);
+    it('Deve retornar erro caso não exista usuário com o email enviado', async () => {
+      const response = await chai
+        .request(app)
+        .post('/login')
+        .send(mocks.userMocks.invalidUser);
+
+      expect(response).to.have.status(401);
+      expect(response.body).to.deep.equal({
+        message: 'Incorrect email or password',
+      });
+    });
   });
 });
