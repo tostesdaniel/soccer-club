@@ -71,7 +71,7 @@ describe('Rota de login', () => {
       });
     });
 
-    describe('Caso não seja enviado email na requisição', () => {
+    describe('Caso não seja enviado senha na requisição', () => {
       it('Deve retornar erro', async () => {
         const response = await chai
           .request(app)
