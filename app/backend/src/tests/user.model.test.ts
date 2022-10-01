@@ -1,12 +1,5 @@
-import { expect } from 'chai';
-
 import UserModel from '../database/models/UserModel';
-
-const checkPropertyExists = (instance: object) => (propName: string) => {
-  it(`has property ${propName}`, () => {
-    expect(instance).to.have.property(propName);
-  });
-};
+import checkPropertyExists from './helpers/checkPropertyExists';
 
 describe('Verifica se o Model de User', () => {
   const user = new UserModel();
