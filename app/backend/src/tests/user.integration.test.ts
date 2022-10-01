@@ -31,6 +31,7 @@ describe('Rota de login', () => {
         .send(mocks.userMocks.admin);
 
       expect(response).to.have.status(200);
+      expect(response.body).to.have.property('token');
     });
   });
 
