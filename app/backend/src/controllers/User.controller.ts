@@ -21,7 +21,7 @@ export default class UserController {
 
   static async validateLogin(req: Request, res: Response): Promise<Response> {
     const token = req.headers.authorization;
-    if (!token) return res.status(401).json({ message: '404|token not found' });
+    if (!token) return res.status(404).json({ message: 'Token not found' });
 
     const userRole = await UserService.validateLogin(token);
 
