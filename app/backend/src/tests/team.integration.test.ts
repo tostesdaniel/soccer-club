@@ -30,7 +30,9 @@ describe('Rota de times', () => {
   describe('Ao buscar um time por id', () => {
     describe('Em caso de sucesso', () => {
       before(async () => {
-        sinon.stub(Team, 'findOne').resolves(mocks.teamMock.singleTeam as Team);
+        sinon
+          .stub(Team, 'findByPk')
+          .resolves(mocks.teamMock.singleTeam as Team);
       });
 
       after(() => sinon.restore());
