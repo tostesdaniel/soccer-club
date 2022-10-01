@@ -7,4 +7,12 @@ export default {
     email: 'idonotexist@notfound.com',
     password: 'definitely_not',
   },
+  noEmailLogin: {
+    email: '',
+    password: 'atLeastThereIsAPassword',
+  },
+  noPasswordLogin: {
+    email: 'thereisan@email.com',
+    password: '',
+  },
 };
