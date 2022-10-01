@@ -18,4 +18,13 @@ export default class UserController {
       return next(error);
     }
   }
+
+  static async validateLogin(req: Request, res: Response): Promise<Response> {
+    const token = req.headers.authorization;
+    if (!token) return res.status(401).json({ message: '404|token not found' });
+
+    const userRole = await UserService.validateLogin(token);
+
+    return res.status(200).json(userRole);
+  }
 }
