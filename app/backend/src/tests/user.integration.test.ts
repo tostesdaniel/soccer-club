@@ -86,3 +86,36 @@ describe('Rota de login', () => {
     });
   });
 });
+
+describe('Rota de login validate', () => {
+  describe('Em caso de sucesso', () => {
+    it('Verifica se ao logar como administrador é retornada a role admin', async () => {
+      const response = await chai
+        .request(app)
+        .get('/login/validate')
+        .set({ Authorization: mocks.tokenMock.adminToken });
+
+      expect(response).to.have.status(200);
+      expect(response.body).to.deep.equal(mocks.userMocks.adminRole);
+    });
+
+    it('Verifica se ao logar como usuário é retornada a role user', async () => {
+      const response = await chai
+        .request(app)
+        .get('/login/validate')
+        .set({ Authorization: mocks.tokenMock.userToken });
+
+      expect(response).to.have.status(200);
+      expect(response.body).to.deep.equal(mocks.userMocks.userRole);
+    });
+  });
+
+  describe('Em caso de erro', () => {
+    it('Verifica se é retornado erro de token não encontrado', async () => {
+      const response = await chai.request(app).get('/login/validate');
+
+      expect(response).to.have.status(404);
+      expect(response.body).to.deep.equal({ message: 'Token not found' });
+    });
+  });
+});
