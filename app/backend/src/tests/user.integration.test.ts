@@ -1,8 +1,7 @@
 import * as sinon from 'sinon';
 import * as chai from 'chai';
-// @ts-ignore-start
+// @ts-ignore
 import chaiHttp = require('chai-http');
-import * as bcrypt from 'bcryptjs';
 import { app } from '../app';
 import User from '../database/models/UserModel';
 import mocks from './mocks';
