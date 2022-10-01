@@ -55,5 +55,33 @@ describe('Rota de login', () => {
         });
       });
     });
+
+    describe('Caso não seja enviado email na requisição', () => {
+      it('Deve retornar erro', async () => {
+        const response = await chai
+          .request(app)
+          .post('/login')
+          .send(mocks.userMocks.noEmailLogin);
+
+        expect(response).to.have.status(400);
+        expect(response.body).to.deep.equal({
+          message: 'All fields must be filled',
+        });
+      });
+    });
+
+    describe('Caso não seja enviado email na requisição', () => {
+      it('Deve retornar erro', async () => {
+        const response = await chai
+          .request(app)
+          .post('/login')
+          .send(mocks.userMocks.noPasswordLogin);
+
+        expect(response).to.have.status(400);
+        expect(response.body).to.deep.equal({
+          message: 'All fields must be filled',
+        });
+      });
+    });
   });
 });
