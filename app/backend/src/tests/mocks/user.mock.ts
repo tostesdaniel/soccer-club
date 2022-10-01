@@ -15,4 +15,6 @@ export default {
     email: 'thereisan@email.com',
     password: '',
   },
+  adminRole: { role: 'admin' },
+  userRole: { role: 'user' },
 };
