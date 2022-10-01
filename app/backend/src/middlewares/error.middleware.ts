@@ -6,6 +6,7 @@ export default (
   res: Response,
   _next: NextFunction,
 ) => {
+  console.log('err ~ error.middleware', err);
   const [code, message] = err.message.split('|');
 
   if (!message) {
