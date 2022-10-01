@@ -36,21 +36,23 @@ describe('Rota de login', () => {
   });
 
   describe('Em caso de erro', () => {
-    before(async () => {
-      sinon.stub(User, 'findOne').resolves(null);
-    });
+    describe('Caso não exista usuário com o email enviado', () => {
+      before(async () => {
+        sinon.stub(User, 'findOne').resolves(null);
+      });
 
-    after(async () => sinon.restore());
+      after(async () => sinon.restore());
 
-    it('Deve retornar erro caso não exista usuário com o email enviado', async () => {
-      const response = await chai
-        .request(app)
-        .post('/login')
-        .send(mocks.userMocks.invalidUser);
+      it('Deve retornar erro', async () => {
+        const response = await chai
+          .request(app)
+          .post('/login')
+          .send(mocks.userMocks.invalidUser);
 
-      expect(response).to.have.status(401);
-      expect(response.body).to.deep.equal({
-        message: 'Incorrect email or password',
+        expect(response).to.have.status(401);
+        expect(response.body).to.deep.equal({
+          message: 'Incorrect email or password',
+        });
       });
     });
   });
