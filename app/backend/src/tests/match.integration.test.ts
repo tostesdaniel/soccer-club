@@ -40,6 +40,12 @@ describe('Rota de matches', () => {
 
     describe('Ao buscar por partidas em andamento', () => {
       describe('Em caso de sucesso', () => {
+        before(async () => {
+          sinon.stub(Match, 'findAll').resolves(matchesInProgress as Match[]);
+        });
+
+        after(() => sinon.restore());
+
         it('Verifica se são retornados os dados corretamente', async () => {
           const response = await chai
             .request(app)
@@ -54,6 +60,12 @@ describe('Rota de matches', () => {
 
     describe('Ao buscar por partidas finalizadas', () => {
       describe('Em caso de sucesso', () => {
+        before(async () => {
+          sinon.stub(Match, 'findAll').resolves(finishedMatches as Match[]);
+        });
+
+        after(() => sinon.restore());
+
         it('Verifica se são retornados os dados corretamente', async () => {
           const response = await chai
             .request(app)
