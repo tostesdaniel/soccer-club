@@ -10,6 +10,12 @@ module.exports = {
       home_team: {
         allowNull: false,
         type: Sequelize.INTEGER,
+        references: {
+          key: "id",
+          model: "Team",
+        },
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
       },
       home_team_goals: {
         allowNull: false,
@@ -18,6 +24,12 @@ module.exports = {
       away_team: {
         allowNull: false,
         type: Sequelize.INTEGER,
+        references: {
+          key: "id",
+          model: "Team",
+        },
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
       },
       away_team_goals: {
         allowNull: false,
