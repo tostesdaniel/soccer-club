@@ -1,4 +1,5 @@
 import { DataTypes, Model } from 'sequelize';
+import ITeam from '../../interfaces/Team.interface';
 import db from '.';
 import Team from './TeamModel';
 
@@ -9,6 +10,8 @@ class Match extends Model {
   awayTeam!: number;
   awayTeamGoals!: number;
   inProgress!: boolean;
+  teamHome?: ITeam;
+  teamAway?: ITeam;
 }
 
 Match.init(
