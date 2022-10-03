@@ -15,3 +15,7 @@ export interface IUserPayload extends JwtPayload, Request {
     role: string;
   };
 }
+
+export interface IUserRequest extends Request {
+  user: string | JwtPayload;
+}
