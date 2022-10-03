@@ -5,19 +5,28 @@ import chaiHttp = require('chai-http');
 import { app } from '../app';
 import mocks from './mocks';
 import Match from '../database/models/MatchModel';
+import Team from '../database/models/TeamModel';
 
 chai.use(chaiHttp);
 const { expect } = chai;
 
 describe('Rota de matches', () => {
+  const { allMatches } = mocks.matchesMock;
+
   describe('GET /matches', () => {
     describe('Ao buscar por todas as partidas', () => {
       describe('Em caso de sucesso', () => {
+        before(async () => {
+          sinon.stub(Match, 'findAll').resolves(allMatches as Match[]);
+        });
+
+        after(() => sinon.restore());
+
         it('Verifica se são retornados os dados corretamente', async () => {
           const response = await chai.request(app).get('/matches');
 
           expect(response).to.have.status(200);
-          expect(response.body).to.deep.equal(mocks.matchesMock.allMatches);
+          expect(response.body).to.deep.equal(allMatches);
         });
       });
     });
@@ -99,8 +108,8 @@ describe('Rota de matches', () => {
     describe('Ao tentar inserir uma partida com um time que não existe', () => {
       before(async () => {
         sinon
-          .stub(Match, 'findAll')
-          .resolves([null, mocks.matchesMock.allMatches[0][0]]);
+          .stub(Team, 'findAll')
+          .resolves([mocks.teamMock.allTeams[0]] as Team[]);
       });
 
       after(() => sinon.restore());
