@@ -11,7 +11,14 @@ chai.use(chaiHttp);
 const { expect } = chai;
 
 describe('Rota de matches', () => {
-  const { allMatches } = mocks.matchesMock;
+  const {
+    allMatches,
+    matchesInProgress,
+    finishedMatches,
+    newMatch,
+    newMatchInvalidTeam,
+    newMatchSameTeam,
+  } = mocks.matchesMock;
 
   describe('GET /matches', () => {
     describe('Ao buscar por todas as partidas', () => {
@@ -40,9 +47,7 @@ describe('Rota de matches', () => {
             .query({ inProgress: true });
 
           expect(response).to.have.status(200);
-          expect(response.body).to.deep.equal(
-            mocks.matchesMock.matchesInProgress
-          );
+          expect(response.body).to.deep.equal(matchesInProgress);
         });
       });
     });
@@ -56,9 +61,7 @@ describe('Rota de matches', () => {
             .query({ inProgress: false });
 
           expect(response).to.have.status(200);
-          expect(response.body).to.deep.equal(
-            mocks.matchesMock.finishedMatches
-          );
+          expect(response.body).to.deep.equal(finishedMatches);
         });
       });
     });
@@ -67,7 +70,7 @@ describe('Rota de matches', () => {
   describe('POST /matches', () => {
     describe('Ao cadastrar partida em andamento', () => {
       describe('Em caso de sucesso', () => {
-        const insertion = { id: 11, ...mocks.matchesMock.newMatch } as Match;
+        const insertion = { id: 11, ...newMatch } as Match;
 
         before(async () => {
           sinon.stub(Match, 'create').resolves(insertion);
@@ -79,7 +82,7 @@ describe('Rota de matches', () => {
           const response = await chai
             .request(app)
             .post('/matches')
-            .send(mocks.matchesMock.newMatch)
+            .send(newMatch)
             .set({ Authorization: mocks.tokenMock.adminToken })
             .query({ inProgress: true });
 
@@ -94,7 +97,7 @@ describe('Rota de matches', () => {
         const response = await chai
           .request(app)
           .post('/matches')
-          .send(mocks.matchesMock.newMatchSameTeam)
+          .send(newMatchSameTeam)
           .set({ Authorization: mocks.tokenMock.adminToken })
           .query({ inProgress: true });
 
@@ -118,7 +121,7 @@ describe('Rota de matches', () => {
         const response = await chai
           .request(app)
           .post('/matches')
-          .send(mocks.matchesMock.newMatchInvalidTeam)
+          .send(newMatchInvalidTeam)
           .set({ Authorization: mocks.tokenMock.adminToken })
           .query({ inProgress: true });
 
@@ -134,7 +137,7 @@ describe('Rota de matches', () => {
         const response = await chai
           .request(app)
           .post('/matches')
-          .send(mocks.matchesMock.newMatchInvalidTeam)
+          .send(newMatchInvalidTeam)
           .set({ Authorization: mocks.tokenMock.invalidToken })
           .query({ inProgress: true });
 
