@@ -155,6 +155,20 @@ describe('Rota de matches', () => {
         });
       });
     });
+
+    describe('Caso não haja token na requisição', () => {
+      it('Verifica que retorna um erro', async () => {
+        const response = await chai
+          .request(app)
+          .post('/matches')
+          .send(newMatch);
+
+        expect(response).to.have.status(400);
+        expect(response.body).to.deep.equal({
+          message: 'Token must be provided',
+        });
+      });
+    });
   });
 
   describe('PATCH /matches/:id/finished', () => {
