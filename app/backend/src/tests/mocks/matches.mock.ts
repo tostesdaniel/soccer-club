@@ -418,4 +418,8 @@ export default {
     awayTeamGoals: 1,
     inProgress: true,
   },
+  updatedMatch: {
+    homeTeamGoals: 3,
+    awayTeamGoals: 1,
+  },
 };
