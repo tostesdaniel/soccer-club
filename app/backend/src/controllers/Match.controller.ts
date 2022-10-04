@@ -35,4 +35,13 @@ export default class MatchController {
 
     return res.status(200).json({ message: 'Finished' });
   }
+
+  async updateScoreboard(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params;
+    const score = req.body;
+
+    await this._matchService.updateScoreboard(Number(id), score);
+
+    return res.status(200).json({ message: 'Scoreboard updated' });
+  }
 }
