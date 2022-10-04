@@ -57,4 +57,14 @@ export default class MatchService {
       { where: { id: matchId } },
     );
   }
+
+  async updateScoreboard(
+    matchId: number,
+    { homeTeamGoals, awayTeamGoals }: Match,
+  ) {
+    await this._matchModel.update(
+      { homeTeamGoals, awayTeamGoals },
+      { where: { id: matchId } },
+    );
+  }
 }
