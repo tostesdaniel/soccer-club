@@ -95,8 +95,7 @@ describe('Rota de matches', () => {
             .request(app)
             .post('/matches')
             .send(newMatch)
-            .set({ Authorization: mocks.tokenMock.adminToken })
-            .query({ inProgress: true });
+            .set({ Authorization: mocks.tokenMock.adminToken });
 
           expect(response).to.have.status(200);
           expect(response.body).to.deep.equal(insertion);
@@ -110,8 +109,7 @@ describe('Rota de matches', () => {
           .request(app)
           .post('/matches')
           .send(newMatchSameTeam)
-          .set({ Authorization: mocks.tokenMock.adminToken })
-          .query({ inProgress: true });
+          .set({ Authorization: mocks.tokenMock.adminToken });
 
         expect(response).to.have.status(401);
         expect(response.body).to.deep.equal({
@@ -134,8 +132,7 @@ describe('Rota de matches', () => {
           .request(app)
           .post('/matches')
           .send(newMatchInvalidTeam)
-          .set({ Authorization: mocks.tokenMock.adminToken })
-          .query({ inProgress: true });
+          .set({ Authorization: mocks.tokenMock.adminToken });
 
         expect(response).to.have.status(404);
         expect(response.body).to.deep.equal({
