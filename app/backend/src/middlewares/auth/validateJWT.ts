@@ -14,7 +14,9 @@ export default async (
 ): Promise<Response | void> => {
   try {
     const token = req.headers.authorization;
-    if (!token) return res.status(401).json({ message: '404|Token not found' });
+    if (!token) {
+      return res.status(401).json({ message: 'Token must be a valid token' });
+    }
 
     const payload = jwt.verify(token, secretKey);
     (req as IUserRequest).user = payload;
