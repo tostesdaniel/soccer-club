@@ -50,4 +50,11 @@ export default class MatchService {
 
     return instance;
   }
+
+  async updateMatchProgress(matchId: number) {
+    await this._matchModel.update(
+      { inProgress: false },
+      { where: { id: matchId } },
+    );
+  }
 }
