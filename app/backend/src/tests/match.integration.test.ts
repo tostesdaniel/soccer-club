@@ -97,7 +97,7 @@ describe('Rota de matches', () => {
             .send(newMatch)
             .set({ Authorization: mocks.tokenMock.adminToken });
 
-          expect(response).to.have.status(200);
+          expect(response).to.have.status(201);
           expect(response.body).to.deep.equal(insertion);
         });
       });
@@ -146,12 +146,12 @@ describe('Rota de matches', () => {
         const response = await chai
           .request(app)
           .post('/matches')
-          .send(newMatchInvalidTeam)
+          .send(newMatch)
           .set({ Authorization: mocks.tokenMock.invalidToken });
 
         expect(response).to.have.status(401);
         expect(response.body).to.deep.equal({
-          message: 'There is no team with such id!',
+          message: 'Token must be a valid token',
         });
       });
     });
