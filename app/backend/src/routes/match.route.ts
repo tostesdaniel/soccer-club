@@ -13,4 +13,7 @@ matchRouter.post('/', validateJWT, (req, res) => match.create(req, res));
 
 matchRouter.get('/', (req, res) => match.getAll(req, res));
 
+matchRouter.patch('/:id/finish', (req, res) =>
+  match.updateMatchProgress(req, res));
+
 export default matchRouter;
