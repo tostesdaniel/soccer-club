@@ -9,13 +9,13 @@ const secretKey = process.env.JWT_SECRET || 'jwt_secret';
 
 export default async (
   req: Request,
-  res: Response,
+  _res: Response,
   next: NextFunction,
 ): Promise<Response | void> => {
   try {
     const token = req.headers.authorization;
     if (!token) {
-      return res.status(401).json({ message: 'Token must be a valid token' });
+      return next(new Error('400|Token must be provided'));
     }
 
     const payload = jwt.verify(token, secretKey);
@@ -23,6 +23,6 @@ export default async (
 
     return next();
   } catch (error) {
-    return next(error);
+    return next(new Error('401|Token must be a valid token'));
   }
 };
