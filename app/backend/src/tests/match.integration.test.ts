@@ -18,6 +18,7 @@ describe('Rota de matches', () => {
     newMatch,
     newMatchInvalidTeam,
     newMatchSameTeam,
+    updatedMatch,
   } = mocks.matchesMock;
 
   describe('GET /matches', () => {
@@ -174,14 +175,38 @@ describe('Rota de matches', () => {
   describe('PATCH /matches/:id/finished', () => {
     describe('Ao atualizar o status "inProgress" para "false"', () => {
       describe('Em caso de sucesso', () => {
-        it('Verifica se a operação foi concluída', async () => {});
+        before(async () => {
+          sinon.stub(Match, 'update').resolves();
+        });
+
+        after(() => sinon.restore());
+
+        it('Verifica se a operação foi concluída', async () => {
+          const response = await chai.request(app).patch('/matches/1/finish');
+
+          expect(response).to.have.status(200);
+          expect(response.body).to.deep.equal({ message: 'Finished' });
+        });
       });
     });
   });
 
   describe('PATCH /matches/:id', () => {
     describe('Ao atualizar informações de partidas em andamento', () => {
-      it('Verifica se é retornado o status correto', async () => {});
+      before(async () => {
+        sinon.stub(Match, 'update').resolves();
+      });
+
+      after(() => sinon.restore());
+
+      it('Verifica se é retornado o status correto', async () => {
+        const response = await chai
+          .request(app)
+          .patch('/matches/1')
+          .send(updatedMatch);
+
+        expect(response).to.have.status(200);
+      });
     });
   });
 });
