@@ -16,4 +16,6 @@ matchRouter.get('/', (req, res) => match.getAll(req, res));
 matchRouter.patch('/:id/finish', (req, res) =>
   match.updateMatchProgress(req, res));
 
+matchRouter.patch('/:id', (req, res) => match.updateScoreboard(req, res));
+
 export default matchRouter;
