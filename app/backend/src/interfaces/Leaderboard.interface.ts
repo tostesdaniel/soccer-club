@@ -8,5 +8,5 @@ export default interface ILeaderBoard {
   goalsFavor: number;
   goalsOwn: number;
   goalsBalance: number;
-  efficiency: string | null;
+  efficiency: string;
 }
