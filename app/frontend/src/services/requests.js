@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: `soccer-club-production.up.railway.app`,
+  baseURL: `https://soccer-club-production.up.railway.app`,
 });
 
 export const setToken = (token) => {
