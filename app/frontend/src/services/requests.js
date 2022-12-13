@@ -9,7 +9,9 @@ export const setToken = (token) => {
 };
 
 export const requestData = async (endpoint) => {
+  console.log("endpoint", endpoint);
   const { data } = await api.get(endpoint);
+  console.log("🛠️ ~ requestData ~ data", data);
   return data;
 };
 
