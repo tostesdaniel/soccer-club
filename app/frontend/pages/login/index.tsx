@@ -26,7 +26,8 @@ export default function Login() {
     setLogin((prevState) => ({ ...prevState, [name]: value }))
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault()
     const validation = validateLogin()
     if (!validation.success) {
       const {
