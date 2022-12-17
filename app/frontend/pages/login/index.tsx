@@ -1,4 +1,49 @@
+import { useState } from 'react'
+import { z } from 'zod'
+import { ExclamationCircleIcon } from '@heroicons/react/20/solid'
+
+const loginSchema = z.object({
+  email: z
+    .string({ required_error: 'Email não foi preenchido.' })
+    .email({ message: 'Email inválido.' }),
+  password: z
+    .string()
+    .min(6, { message: 'Senha deve ter o mínimo de 6 caracteres' })
+    .max(100),
+})
+
 export default function Login() {
+  const [login, setLogin] = useState({ email: '', password: '' })
+  const [error, setError] = useState({ email: '', password: '' })
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target
+
+    if (Object.values(error).some((value) => Boolean(value))) {
+      setError({ email: '', password: '' })
+    }
+
+    setLogin((prevState) => ({ ...prevState, [name]: value }))
+  }
+
+  const handleSubmit = () => {
+    const validation = validateLogin()
+    if (!validation.success) {
+      const {
+        fieldErrors: { email, password },
+      } = validation.error.flatten()
+      return setError({
+        email: (email && email[0]) || '',
+        password: (password && password[0]) || '',
+      })
+    }
+
+    setLogin({ email: '', password: '' })
+    setError({ email: '', password: '' })
+  }
+
+  const validateLogin = () => loginSchema.safeParse(login)
+
   return (
     <div className="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
@@ -17,16 +62,37 @@ export default function Login() {
               >
                 Endereço de email
               </label>
-              <div className="mt-1">
+              <div className="relative mt-1">
                 <input
                   id="email"
                   name="email"
                   type="email"
+                  value={login.email}
+                  onChange={handleChange}
                   autoComplete="email"
+                  aria-invalid={Boolean(error.email)}
+                  aria-describedby="email-error"
                   required
-                  className="block w-full appearance-none rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-indigo-500  focus:outline-none focus:ring-indigo-500"
+                  className={`block w-full appearance-none rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-indigo-500  focus:outline-none focus:ring-indigo-500 ${
+                    Boolean(error.email)
+                      ? 'border-red-300 pr-10 text-red-900 focus:border-red-500 focus:ring-red-500'
+                      : null
+                  }`}
                 />
+                {Boolean(error.email) && (
+                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                    <ExclamationCircleIcon
+                      className="h5 w-5 text-red-500"
+                      aria-hidden="true"
+                    />
+                  </div>
+                )}
               </div>
+              {Boolean(error.email) && (
+                <p id="email-error" className="mt-2 text-sm text-red-600">
+                  {error.email}
+                </p>
+              )}
             </div>
 
             <div>
@@ -36,21 +102,43 @@ export default function Login() {
               >
                 Senha
               </label>
-              <div className="mt-1">
+              <div className="relative mt-1">
                 <input
                   id="password"
                   name="password"
                   type="password"
+                  value={login.password}
+                  onChange={handleChange}
                   autoComplete="password"
+                  aria-invalid={Boolean(error.password)}
+                  aria-describedby="password-error"
                   required
-                  className="block w-full appearance-none rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-indigo-500  focus:outline-none focus:ring-indigo-500"
+                  className={`block w-full appearance-none rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-indigo-500  focus:outline-none focus:ring-indigo-500 ${
+                    Boolean(error.password)
+                      ? 'border-red-300 pr-10 text-red-900 focus:border-red-500 focus:ring-red-500'
+                      : null
+                  }`}
                 />
+                {Boolean(error.password) && (
+                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                    <ExclamationCircleIcon
+                      className="h5 w-5 text-red-500"
+                      aria-hidden="true"
+                    />
+                  </div>
+                )}
               </div>
+              {Boolean(error.password) && (
+                <p id="password-error" className="mt-2 text-sm text-red-600">
+                  {error.password}
+                </p>
+              )}
             </div>
 
             <div>
               <button
                 type="submit"
+                onClick={handleSubmit}
                 className="flex w-full justify-center rounded-md bg-indigo-600 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
               >
                 Entrar
