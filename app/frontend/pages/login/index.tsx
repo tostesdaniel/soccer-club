@@ -8,7 +8,7 @@ const loginSchema = z.object({
     .email({ message: 'Email inválido.' }),
   password: z
     .string()
-    .min(6, { message: 'Senha deve ter o mínimo de 6 caracteres' })
+    .min(6, { message: 'Senha deve ter o mínimo de 6 caracteres.' })
     .max(100),
 })
 
