@@ -102,7 +102,7 @@ export default function Leaderboard() {
               </th>
               <th
                 scope="col"
-                className="py-3.5 px-3 text-left text-sm font-semibold text-gray-900"
+                className="py-3.5 pl-3 pr-4 text-left text-sm font-semibold text-gray-900"
               >
                 Eficiência
               </th>
