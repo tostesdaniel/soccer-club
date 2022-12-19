@@ -9,6 +9,9 @@ interface LoginData {
   password: string
 }
 
+export const setToken = (token: string) =>
+  (instance.defaults.headers.common.Authorization = token)
+
 export const login = (data: LoginData) => instance.post('/login', data)
 
 export default instance
