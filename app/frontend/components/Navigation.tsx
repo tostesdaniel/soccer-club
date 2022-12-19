@@ -5,8 +5,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 const navigation = [
-  { name: 'Times', href: '/matches', current: true },
-  { name: 'Partidas', href: '/leaderboard', current: false },
+  { name: 'Partidas', href: '/matches', current: true },
+  { name: 'Classificação', href: '/leaderboard', current: false },
 ]
 
 export default function Navigation() {
