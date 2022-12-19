@@ -14,4 +14,6 @@ export const setToken = (token: string) =>
 
 export const login = (data: LoginData) => instance.post('/login', data)
 
+export const getLeaderboard = () => instance.get('/leaderboard')
+
 export default instance
