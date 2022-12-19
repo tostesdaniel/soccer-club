@@ -111,17 +111,37 @@ export default function Leaderboard() {
           <tbody className="divide-y divide-gray-200 bg-white">
             {leaderboard?.map((team, index) => (
               <tr key={team.name}>
-                <td>{index}</td>
-                <td>{team.name}</td>
-                <td>{team.totalPoints}</td>
-                <td>{team.totalGames}</td>
-                <td>{team.totalVictories}</td>
-                <td>{team.totalDraws}</td>
-                <td>{team.totalLosses}</td>
-                <td>{team.goalsFavor}</td>
-                <td>{team.goalsOwn}</td>
-                <td>{team.goalsBalance}</td>
-                <td>{`${team.efficiency}%`}</td>
+                <td className="py-4 pl-4 pr-3 text-sm font-medium text-gray-900">
+                  {index}
+                </td>
+                <td className="px-3 py-4 text-sm font-medium text-gray-900">
+                  {team.name}
+                </td>
+                <td className="px-3 py-4 text-sm text-gray-500">
+                  {team.totalPoints}
+                </td>
+                <td className="px-3 py-4 text-sm text-gray-500">
+                  {team.totalGames}
+                </td>
+                <td className="px-3 py-4 text-sm text-gray-500">
+                  {team.totalVictories}
+                </td>
+                <td className="px-3 py-4 text-sm text-gray-500">
+                  {team.totalDraws}
+                </td>
+                <td className="px-3 py-4 text-sm text-gray-500">
+                  {team.totalLosses}
+                </td>
+                <td className="px-3 py-4 text-sm text-gray-500">
+                  {team.goalsFavor}
+                </td>
+                <td className="px-3 py-4 text-sm text-gray-500">
+                  {team.goalsOwn}
+                </td>
+                <td className="px-3 py-4 text-sm text-gray-500">
+                  {team.goalsBalance}
+                </td>
+                <td className="py-4 pl-3 pr-4 text-sm text-gray-500">{`${team.efficiency}%`}</td>
               </tr>
             ))}
           </tbody>
