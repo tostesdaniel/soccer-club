@@ -26,7 +26,7 @@ export default function Leaderboard() {
   }, [])
 
   return (
-    <div className="mt-10 px-4 sm:px-6 lg:px-8">
+    <div className="mt-10 mb-10 px-4 sm:px-6 lg:px-8">
       <div>
         <div>
           <h1 className="text-xl font-semibold text-gray-900">Classificação</h1>
