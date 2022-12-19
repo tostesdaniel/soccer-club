@@ -26,7 +26,7 @@ export default function Leaderboard() {
   }, [])
 
   return (
-    <div>
+    <div className="px-4 sm:px-6 lg:px-8">
       <div>
         <div>
           <h1 className="text-xl font-semibold text-gray-900">Classificação</h1>
@@ -36,21 +36,76 @@ export default function Leaderboard() {
         </div>
       </div>
 
-      <div>
-        <table>
+      <div className="-mx-4 mt-8 overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:-mx-6 md:mx-0 md:rounded-lg">
+        <table className="min-w-full divide-y divide-gray-300">
           <thead className="bg-gray-50">
             <tr>
-              <th scope="col">Classificação</th>
-              <th scope="col">Time</th>
-              <th scope="col">Pts</th>
-              <th scope="col">PJ</th>
-              <th scope="col">VIT</th>
-              <th scope="col">E</th>
-              <th scope="col">DER</th>
-              <th scope="col">GP</th>
-              <th scope="col">GC</th>
-              <th scope="col">SG</th>
-              <th scope="col">Eficiência</th>
+              <th
+                scope="col"
+                className="py-3.5 pr-3 pl-4 text-left text-sm font-semibold text-gray-900"
+              >
+                Classificação
+              </th>
+              <th
+                scope="col"
+                className="py-3.5 px-3 text-left text-sm font-semibold text-gray-900"
+              >
+                Time
+              </th>
+              <th
+                scope="col"
+                className="py-3.5 px-3 text-left text-sm font-semibold text-gray-900"
+              >
+                Pts
+              </th>
+              <th
+                scope="col"
+                className="py-3.5 px-3 text-left text-sm font-semibold text-gray-900"
+              >
+                PJ
+              </th>
+              <th
+                scope="col"
+                className="py-3.5 px-3 text-left text-sm font-semibold text-gray-900"
+              >
+                VIT
+              </th>
+              <th
+                scope="col"
+                className="py-3.5 px-3 text-left text-sm font-semibold text-gray-900"
+              >
+                E
+              </th>
+              <th
+                scope="col"
+                className="py-3.5 px-3 text-left text-sm font-semibold text-gray-900"
+              >
+                DER
+              </th>
+              <th
+                scope="col"
+                className="py-3.5 px-3 text-left text-sm font-semibold text-gray-900"
+              >
+                GP
+              </th>
+              <th
+                scope="col"
+                className="py-3.5 px-3 text-left text-sm font-semibold text-gray-900"
+              >
+                GC
+              </th>
+              <th
+                scope="col"
+                className="py-3.5 px-3 text-left text-sm font-semibold text-gray-900"
+              >
+                SG
+              </th>
+              <th
+                scope="col"
+                className="py-3.5 px-3 text-left text-sm font-semibold text-gray-900"
+              >
+                Eficiência
+              </th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200 bg-white">
