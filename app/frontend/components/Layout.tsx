@@ -10,7 +10,7 @@ export default function Layout({ children }: Props) {
   return (
     <>
       <Navigation />
-      <main>{children}</main>
+      <main className="h-full">{children}</main>
       <Footer />
     </>
   )
