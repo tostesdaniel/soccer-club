@@ -3,7 +3,6 @@ import { AxiosResponse } from 'axios'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { z } from 'zod'
-import Navigation from '../../components/Navigation'
 import { login as loginRequest, setToken } from '../../services/requests'
 
 interface LoginError {
@@ -72,7 +71,6 @@ export default function Login() {
 
   return (
     <>
-      <Navigation />
       <div className="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
           <h2 className="text-center text-3xl font-extrabold text-gray-900">
