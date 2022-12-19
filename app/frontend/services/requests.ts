@@ -1,0 +1,14 @@
+import axios from 'axios'
+
+const instance = axios.create({
+  baseURL: 'https://soccer-club-production.up.railway.app/',
+})
+
+interface LoginData {
+  email: string
+  password: string
+}
+
+export const login = (data: LoginData) => instance.post('/login', data)
+
+export default instance
