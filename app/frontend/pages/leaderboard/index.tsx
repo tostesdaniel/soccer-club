@@ -1,6 +1,6 @@
-import { ChevronRightIcon } from '@heroicons/react/20/solid'
 import { AxiosResponse } from 'axios'
 import { useEffect, useState } from 'react'
+import LeaderboardSelect from '../../components/leaderboard/LeaderboardSelect'
 import { getLeaderboard } from '../../services/requests'
 
 type LeaderboardItem = {
@@ -28,12 +28,15 @@ export default function Leaderboard() {
 
   return (
     <div className="mt-10 mb-10 px-4 sm:px-6 lg:px-8">
-      <div>
-        <div>
+      <div className="sm:flex sm:items-center">
+        <div className="flex-auto">
           <h1 className="text-xl font-semibold text-gray-900">Classificação</h1>
           <p className="mt-2 text-sm text-gray-700">
             Classificação geral do campeonato, com times da casa e visitantes.
           </p>
+        </div>
+        <div className="mt-4 flex-none sm:mt-0 sm:ml-16">
+          <LeaderboardSelect />
         </div>
       </div>
 
