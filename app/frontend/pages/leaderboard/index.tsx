@@ -1,3 +1,4 @@
+import { ChevronRightIcon } from '@heroicons/react/20/solid'
 import { AxiosResponse } from 'axios'
 import { useEffect, useState } from 'react'
 import { getLeaderboard } from '../../services/requests'
@@ -42,7 +43,7 @@ export default function Leaderboard() {
             <tr>
               <th
                 scope="col"
-                className="py-3.5 pr-3 pl-4 text-left text-sm font-semibold text-gray-900"
+                className="py-3.5 pr-3 pl-4 text-left text-sm font-semibold text-gray-900 sm:pl-6"
               >
                 Classificação
               </th>
@@ -60,49 +61,49 @@ export default function Leaderboard() {
               </th>
               <th
                 scope="col"
-                className="py-3.5 px-3 text-left text-sm font-semibold text-gray-900"
+                className="hidden py-3.5 px-3 text-left text-sm font-semibold text-gray-900 sm:table-cell"
               >
                 PJ
               </th>
               <th
                 scope="col"
-                className="py-3.5 px-3 text-left text-sm font-semibold text-gray-900"
+                className="hidden py-3.5 px-3 text-left text-sm font-semibold text-gray-900 sm:table-cell"
               >
                 VIT
               </th>
               <th
                 scope="col"
-                className="py-3.5 px-3 text-left text-sm font-semibold text-gray-900"
+                className="hidden py-3.5 px-3 text-left text-sm font-semibold text-gray-900 sm:table-cell"
               >
                 E
               </th>
               <th
                 scope="col"
-                className="py-3.5 px-3 text-left text-sm font-semibold text-gray-900"
+                className="hidden py-3.5 px-3 text-left text-sm font-semibold text-gray-900 sm:table-cell"
               >
                 DER
               </th>
               <th
                 scope="col"
-                className="py-3.5 px-3 text-left text-sm font-semibold text-gray-900"
+                className="hidden py-3.5 px-3 text-left text-sm font-semibold text-gray-900 sm:table-cell"
               >
                 GP
               </th>
               <th
                 scope="col"
-                className="py-3.5 px-3 text-left text-sm font-semibold text-gray-900"
+                className="hidden py-3.5 px-3 text-left text-sm font-semibold text-gray-900 sm:table-cell"
               >
                 GC
               </th>
               <th
                 scope="col"
-                className="py-3.5 px-3 text-left text-sm font-semibold text-gray-900"
+                className="py-3.5 px-3 text-left text-sm font-semibold text-gray-900 sm:pr-6"
               >
                 SG
               </th>
               <th
                 scope="col"
-                className="py-3.5 pl-3 pr-4 text-left text-sm font-semibold text-gray-900"
+                className="hidden py-3.5 pl-3 pr-4 text-left text-sm font-semibold text-gray-900 md:table-cell md:pr-6"
               >
                 Eficiência
               </th>
@@ -111,37 +112,47 @@ export default function Leaderboard() {
           <tbody className="divide-y divide-gray-200 bg-white">
             {leaderboard?.map((team, index) => (
               <tr key={team.name}>
-                <td className="py-4 pl-4 pr-3 text-sm font-medium text-gray-900">
+                <td className="w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
                   {index}
                 </td>
-                <td className="px-3 py-4 text-sm font-medium text-gray-900">
+                <td className="w-full max-w-0 px-3 py-4 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none">
                   {team.name}
+                  <dl className="sm:hidden">
+                    <dt className="sr-only">Vitórias</dt>
+                    <dd className="inline text-gray-700">
+                      {`${team.totalVictories}V`}
+                    </dd>
+                    <dt className="sr-only">Empates</dt>
+                    <dd className="inline pl-3 text-gray-700">{`${team.totalDraws}E`}</dd>
+                    <dt className="sr-only">Derrotas</dt>
+                    <dd className="inline pl-3 text-gray-700">{`${team.totalLosses}D`}</dd>
+                  </dl>
                 </td>
                 <td className="px-3 py-4 text-sm text-gray-500">
                   {team.totalPoints}
                 </td>
-                <td className="px-3 py-4 text-sm text-gray-500">
+                <td className="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell">
                   {team.totalGames}
                 </td>
-                <td className="px-3 py-4 text-sm text-gray-500">
+                <td className="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell">
                   {team.totalVictories}
                 </td>
-                <td className="px-3 py-4 text-sm text-gray-500">
+                <td className="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell">
                   {team.totalDraws}
                 </td>
-                <td className="px-3 py-4 text-sm text-gray-500">
+                <td className="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell">
                   {team.totalLosses}
                 </td>
-                <td className="px-3 py-4 text-sm text-gray-500">
+                <td className="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell">
                   {team.goalsFavor}
                 </td>
-                <td className="px-3 py-4 text-sm text-gray-500">
+                <td className="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell">
                   {team.goalsOwn}
                 </td>
-                <td className="px-3 py-4 text-sm text-gray-500">
+                <td className="px-3 py-4 text-sm text-gray-500 sm:pr-6">
                   {team.goalsBalance}
                 </td>
-                <td className="py-4 pl-3 pr-4 text-sm text-gray-500">{`${team.efficiency}%`}</td>
+                <td className="hidden py-4 pl-3 pr-4 text-sm text-gray-500 md:table-cell md:pr-6">{`${team.efficiency}%`}</td>
               </tr>
             ))}
           </tbody>
