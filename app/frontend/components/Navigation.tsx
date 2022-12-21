@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 const navigation = [
-  { name: 'Partidas', href: '/matches', current: true },
+  { name: 'Partidas', href: '/matches', current: false },
   { name: 'Classificação', href: '/leaderboard', current: false },
 ]
 
@@ -42,7 +42,9 @@ export default function Navigation() {
                         key={item.name}
                         href={item.href}
                         className={`rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white ${
-                          item.current ? 'text-white bg-gray-900' : null
+                          item.href === router.pathname
+                            ? 'bg-gray-900 text-white'
+                            : null
                         }`}
                         aria-current={item.current ? 'page' : undefined}
                       >
@@ -77,7 +79,7 @@ export default function Navigation() {
                     as={Link}
                     href={item.href}
                     className={`block rounded-md px-3 py-2 text-base font-medium ${
-                      item.current
+                      item.href === router.pathname
                         ? 'bg-gray-900 text-white'
                         : 'text-gray-300 hover:bg-gray-700 hover:text-white'
                     }`}
