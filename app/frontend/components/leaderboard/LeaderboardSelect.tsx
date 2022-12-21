@@ -38,7 +38,15 @@ export default function LeaderboardSelect() {
             >
               <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                 {leaderboardTypes.map(({ name, path }) => (
-                  <Listbox.Option key={name} value={path}>
+                  <Listbox.Option
+                    key={name}
+                    value={path}
+                    className={({ active }) =>
+                      `${
+                        active ? 'bg-indigo-500 text-white' : 'text-gray-900'
+                      } cursor-default select-none py-2 px-3.5`
+                    }
+                  >
                     {name}
                   </Listbox.Option>
                 ))}
