@@ -29,10 +29,17 @@ export default function Leaderboard() {
   )
 
   useEffect(() => {
-    getLeaderboard().then(({ data }: AxiosResponse<LeaderboardItem[]>) =>
+    getLeaderboard('/').then(({ data }: AxiosResponse<LeaderboardItem[]>) =>
       setLeaderboard(data)
     )
   }, [])
+
+  useEffect(() => {
+    const path = leaderboardFilter.path
+    getLeaderboard(path).then(({ data }: AxiosResponse<LeaderboardItem[]>) =>
+      setLeaderboard(data)
+    )
+  }, [leaderboardFilter])
 
   return (
     <div className="mt-10 mb-10 px-4 sm:px-6 lg:px-8">
