@@ -1,6 +1,6 @@
 import { Listbox, Transition } from '@headlessui/react'
 import { ChevronUpDownIcon } from '@heroicons/react/20/solid'
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 
 const leaderboardTypes = [
   { name: 'Todos os times', path: '/' },
@@ -29,7 +29,13 @@ export default function LeaderboardSelect() {
               </span>
             </Listbox.Button>
 
-            <Transition>
+            <Transition
+              show={open}
+              as={Fragment}
+              leave="transition ease-in duration-100"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
               <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                 {leaderboardTypes.map(({ name, path }) => (
                   <Listbox.Option key={name} value={path}>
