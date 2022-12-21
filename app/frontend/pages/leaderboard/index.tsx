@@ -3,6 +3,12 @@ import { useEffect, useState } from 'react'
 import LeaderboardSelect from '../../components/leaderboard/LeaderboardSelect'
 import { getLeaderboard } from '../../services/requests'
 
+const leaderboardTypes = [
+  { name: 'Todos os times', path: '/' },
+  { name: 'Times da casa', path: '/home' },
+  { name: 'Times visitantes', path: '/away' },
+]
+
 type LeaderboardItem = {
   name: string
   totalPoints: number
@@ -18,7 +24,9 @@ type LeaderboardItem = {
 
 export default function Leaderboard() {
   const [leaderboard, setLeaderboard] = useState<LeaderboardItem[]>([])
-  const [leaderboardFilter, setLeaderboardFilter] = useState('All')
+  const [leaderboardFilter, setLeaderboardFilter] = useState(
+    leaderboardTypes[0]
+  )
 
   useEffect(() => {
     getLeaderboard().then(({ data }: AxiosResponse<LeaderboardItem[]>) =>
@@ -36,7 +44,11 @@ export default function Leaderboard() {
           </p>
         </div>
         <div className="mt-4 flex-none sm:mt-0 sm:ml-16">
-          <LeaderboardSelect />
+          <LeaderboardSelect
+            selected={leaderboardFilter}
+            setSelected={setLeaderboardFilter}
+            leaderboardTypes={leaderboardTypes}
+          />
         </div>
       </div>
 
