@@ -42,7 +42,7 @@ export default function Navigation() {
                         key={item.name}
                         href={item.href}
                         className={`rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white ${
-                          item.current ? 'text-white hover:bg-gray-900' : null
+                          item.current ? 'text-white bg-gray-900' : null
                         }`}
                         aria-current={item.current ? 'page' : undefined}
                       >
