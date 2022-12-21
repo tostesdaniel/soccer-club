@@ -1,6 +1,6 @@
-import { Listbox, Transition } from '@headlessui/react';
-import { ChevronUpDownIcon } from '@heroicons/react/20/solid';
-import { Dispatch, Fragment, SetStateAction } from 'react';
+import { Listbox, Transition } from '@headlessui/react'
+import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
+import { Dispatch, Fragment, SetStateAction } from 'react'
 
 type LeaderboardTypes = { name: string; path: string }
 
@@ -48,17 +48,29 @@ export default function LeaderboardSelect({
                     className={({ active }) =>
                       `${
                         active ? 'bg-indigo-500 text-white' : 'text-gray-900'
-                      } cursor-default select-none py-2 px-3.5`
+                      } relative cursor-default select-none py-2 pl-8 pr-4`
                     }
                   >
-                    {({ selected }) => (
-                      <span
-                        className={`${
-                          selected ? 'font-semibold' : 'font-normal'
-                        } block truncate`}
-                      >
-                        {leaderboardType.name}
-                      </span>
+                    {({ selected, active }) => (
+                      <>
+                        <span
+                          className={`${
+                            selected ? 'font-semibold' : 'font-normal'
+                          } block truncate`}
+                        >
+                          {leaderboardType.name}
+                        </span>
+
+                        {selected ? (
+                          <span
+                            className={`${
+                              active ? 'text-white' : 'text-indigo-600'
+                            } absolute inset-y-0 left-0 flex items-center pl-1.5`}
+                          >
+                            <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                          </span>
+                        ) : null}
+                      </>
                     )}
                   </Listbox.Option>
                 ))}
