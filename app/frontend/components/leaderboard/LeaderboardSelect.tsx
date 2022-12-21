@@ -1,16 +1,20 @@
-import { Listbox, Transition } from '@headlessui/react'
-import { ChevronUpDownIcon } from '@heroicons/react/20/solid'
-import { Fragment, useState } from 'react'
+import { Listbox, Transition } from '@headlessui/react';
+import { ChevronUpDownIcon } from '@heroicons/react/20/solid';
+import { Dispatch, Fragment, SetStateAction } from 'react';
 
-const leaderboardTypes = [
-  { name: 'Todos os times', path: '/' },
-  { name: 'Times da casa', path: '/home' },
-  { name: 'Times visitantes', path: '/away' },
-]
+type LeaderboardTypes = { name: string; path: string }
 
-export default function LeaderboardSelect() {
-  const [selected, setSelected] = useState(leaderboardTypes[0])
+type Props = {
+  selected: LeaderboardTypes
+  setSelected: Dispatch<SetStateAction<LeaderboardTypes>>
+  leaderboardTypes: LeaderboardTypes[]
+}
 
+export default function LeaderboardSelect({
+  selected,
+  setSelected,
+  leaderboardTypes,
+}: Props) {
   return (
     <Listbox value={selected} onChange={setSelected}>
       {({ open }) => (
