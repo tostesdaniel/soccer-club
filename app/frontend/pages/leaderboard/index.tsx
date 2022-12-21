@@ -50,7 +50,7 @@ export default function Leaderboard() {
             Classificação geral do campeonato, com times da casa e visitantes.
           </p>
         </div>
-        <div className="mt-4 flex-none sm:mt-0 sm:ml-16">
+        <div className="mt-4 min-w-[168px] flex-none sm:mt-0 sm:ml-16">
           <LeaderboardSelect
             selected={leaderboardFilter}
             setSelected={setLeaderboardFilter}
