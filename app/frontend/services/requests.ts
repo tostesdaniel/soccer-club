@@ -14,6 +14,9 @@ export const setToken = (token: string) =>
 
 export const login = (data: LoginData) => instance.post('/login', data)
 
-export const getLeaderboard = (path: string) => instance.get(`/leaderboard${path}`)
+export const getLeaderboard = (path: string) =>
+  instance.get(`/leaderboard${path}`)
+
+export const getMatches = () => instance.get('/matches')
 
 export default instance
