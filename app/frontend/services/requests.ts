@@ -17,6 +17,7 @@ export const login = (data: LoginData) => instance.post('/login', data)
 export const getLeaderboard = (path: string) =>
   instance.get(`/leaderboard${path}`)
 
-export const getMatches = () => instance.get('/matches')
+export const getMatches = (inProgress: string = '/') =>
+  instance.get(`/matches${inProgress}`)
 
 export default instance
