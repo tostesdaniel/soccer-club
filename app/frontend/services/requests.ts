@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const instance = axios.create({
-  baseURL: 'https://soccer-club-production.up.railway.app/',
+  baseURL: 'https://soccer-club-api.onrender.com',
 })
 
 interface LoginData {
